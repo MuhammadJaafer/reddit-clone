@@ -32,6 +32,8 @@ body {
   font-size: 1.5rem;
   font-family: 'Roboto Mono', monospace;
   font-weight: 400;
+  background: ${({ theme }) => theme.color_body};
+  transition: all 0.3s;
 }
 
 a {
@@ -138,5 +140,53 @@ export const BolText = styled.span`
 export const ErrorText = styled.span`
   color: red;
   font-size: 1.3rem;
+`;
+
+export const SwitchButton = styled.label`
+  position: relative;
+  display: inline-block;
+  width: 5rem;
+  height: 2.6rem;
+
+  & > input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  & > span {
+    position: absolute;
+    cursor: pointer;
+    border-radius: 3rem;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: ${({ theme }) => theme.color_tertiary_dark};
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+  & > span::before {
+    position: absolute;
+    content: "";
+    border-radius: 50%;
+    height: 2.2rem;
+    width: 2.2rem;
+    left: 3px;
+    bottom: 2px;
+    background-color: ${({ theme }) => theme.color_tertiary};
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+  & input:checked + .slider {
+    background-color: ${({ theme }) => theme.color_secondary};
+  }
+  & input:focus + .slider {
+    box-shadow: 0 0 1px ${({ theme }) => theme.color_secondary};
+  }
+  & input:checked + .slider:before {
+    -webkit-transform: translateX(2.2rem);
+    -ms-transform: translateX(2.2rem);
+    transform: translateX(2.2rem);
+  }
 `;
 export default GlobalStyles;

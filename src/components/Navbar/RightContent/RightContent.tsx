@@ -1,13 +1,15 @@
 import { auth } from "@/src/firebase/clientApp";
 import { Button } from "@/src/styles/GlobalStyles";
 import { RightC } from "@/src/styles/Navbar.styled";
-import { signOut } from "firebase/auth";
+import { signOut, User } from "firebase/auth";
 import React from "react";
 import AuthModal from "../../Modal/Auth/AuthModal";
 import AuthButtons from "./AuthButtons";
+import Icons from "./Icons";
+import UserMenu from "./UserMenu";
 
 type RightContentProps = {
-  user: any;
+  user: User | null | undefined;
 };
 
 const RightContent: React.FC<RightContentProps> = ({ user }) => {
@@ -15,17 +17,8 @@ const RightContent: React.FC<RightContentProps> = ({ user }) => {
     <>
       <AuthModal open={false} />
       <RightC>
-        {user ? (
-          <Button
-            onClick={() => {
-              signOut(auth);
-            }}
-          >
-            Logout
-          </Button>
-        ) : (
-          <AuthButtons />
-        )}
+        {user ? <Icons /> : <AuthButtons />}
+        <UserMenu user={user} />
       </RightC>
     </>
   );
