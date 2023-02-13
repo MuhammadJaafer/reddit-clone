@@ -1,9 +1,12 @@
+import { auth } from "@/src/firebase/clientApp";
 import { Logo, Nav } from "@/src/styles/Navbar.styled";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import RedditLogo from "../../../public/images/Reddit-Logo.svg";
 import RightContent from "./RightContent/RightContent";
 import SearchInput from "./SearchInput";
 const Navbar: React.FC = () => {
+  const [user, loading, error] = useAuthState(auth);
   return (
     <Nav>
       <Logo>
@@ -13,7 +16,7 @@ const Navbar: React.FC = () => {
       {/* <Directory />
        */}
       <SearchInput />
-      <RightContent />
+      <RightContent user={user} />
     </Nav>
   );
 };

@@ -42,6 +42,7 @@ export const SearchC = styled.form`
     width: 100%;
     height: 100%;
     padding-left: 4rem;
+    color: ${({ theme }) => theme.color_text};
     &:focus {
       outline: none;
       border: 1px solid ${({ theme }) => theme.color_secondary};

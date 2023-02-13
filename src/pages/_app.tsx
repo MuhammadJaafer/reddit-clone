@@ -4,6 +4,7 @@ import Layout from "../components/Layout/Layout";
 import GlobalStyles from "../styles/GlobalStyles";
 import { darkTheme, lightTheme } from "../styles/Themes";
 import { Roboto_Mono } from "@next/font/google";
+import { RecoilRoot } from "recoil";
 
 const roboto_mono = Roboto_Mono({
   subsets: ["latin"],
@@ -12,11 +13,13 @@ const roboto_mono = Roboto_Mono({
 });
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={lightTheme}>
-      <GlobalStyles />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ThemeProvider>
+    <RecoilRoot>
+      <ThemeProvider theme={lightTheme}>
+        <GlobalStyles />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ThemeProvider>
+    </RecoilRoot>
   );
 }

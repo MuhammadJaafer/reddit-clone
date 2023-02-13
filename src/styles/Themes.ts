@@ -1,3 +1,16 @@
+declare module "styled-components" {
+  export interface DefaultTheme {
+    color_primary: string;
+    color_secondary: string;
+    color_tertiary: string;
+    color_tertiary_light: string;
+    color_tertiary_dark: string;
+    color_text: string;
+    color_text_light: string;
+    color_body: string;
+  }
+}
+
 export const lightTheme = {
   color_primary: "#ff4500",
   color_secondary: "#0079d3",
