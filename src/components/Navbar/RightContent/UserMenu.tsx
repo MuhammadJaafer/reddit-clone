@@ -1,10 +1,11 @@
 import {
   Button,
+  FlexColumn,
   FlexRow,
+  LigText,
   NorText,
-  SwitchButton,
 } from "@/src/styles/GlobalStyles";
-import { MenuC, MenuDev } from "@/src/styles/Navbar.styled";
+import { MenuC, MenuDev, UserInfo } from "@/src/styles/Navbar.styled";
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/menu";
 import { signOut, User } from "firebase/auth";
 import React from "react";
@@ -17,6 +18,8 @@ import { auth } from "@/src/firebase/clientApp";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { authModalState } from "@/src/atoms/authModalAtoms";
 import { ThemeState } from "@/src/atoms/themeAtoms";
+import SwitchButton from "./SwitchButton";
+import { IoSparkles } from "react-icons/io5";
 type UserMenuProps = {
   user?: User | null;
 };
@@ -33,16 +36,24 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
       <Menu closeOnSelect={false}>
         <MenuButton className="menu_btn">
           {user ? (
-            <FlexRow gap="0.5rem">
+            <UserInfo>
               <FaRedditSquare className="reddit-icon" />
-              <FiChevronDown className="arrow-icon" />
-            </FlexRow>
+              <FlexColumn gap="0.2rem">
+                <NorText>
+                  {user?.displayName || user.email?.split("@")[0]}
+                </NorText>
+                <FlexRow gap="0.2rem">
+                  <IoSparkles />
+                  <LigText>1 Karma</LigText>
+                </FlexRow>
+              </FlexColumn>
+            </UserInfo>
           ) : (
             <FlexRow gap="0.5rem">
               <VscAccount className="account-icon" />
-              <FiChevronDown className="arrow-icon" />
             </FlexRow>
           )}
+          <FiChevronDown className="arrow-icon" />
         </MenuButton>
         <MenuList className="menu_list">
           {user ? (
@@ -58,14 +69,11 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
                 <div>
                   <FaRegMoon />
                   <NorText>Dark Mood</NorText>
-                  <SwitchButton>
-                    <input
-                      type="checkbox"
-                      defaultChecked={themeState.darkMode}
-                      onChange={handleTheme}
-                    />
-                    <span className="slider round"></span>
-                  </SwitchButton>
+
+                  <SwitchButton
+                    handleChange={handleTheme}
+                    value={themeState.darkMode}
+                  />
                 </div>
               </MenuItem>
               <MenuDev />
@@ -83,6 +91,17 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
             </>
           ) : (
             <>
+              <MenuItem className="menu_item">
+                <div>
+                  <FaRegMoon />
+                  <NorText>Dark Mood</NorText>
+
+                  <SwitchButton
+                    handleChange={handleTheme}
+                    value={themeState.darkMode}
+                  />
+                </div>
+              </MenuItem>
               <MenuDev />
               <MenuItem
                 className="menu_item"

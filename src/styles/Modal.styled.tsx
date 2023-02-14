@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { BolText, FlexColumn, FlexRow, LigText } from "./GlobalStyles";
 interface IModal {
   open: boolean;
 }
@@ -9,15 +10,15 @@ export const ModalC = styled.div`
   transform: translate(-50%, -50%);
   background: ${({ theme }) => theme.color_tertiary};
   width: 100vw;
-  max-width: 50rem;
+  max-width: 60rem;
   border-radius: 1rem;
   z-index: 10;
   color: ${({ theme }) => theme.color_text};
-  padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+  overflow: hidden;
   & h2 {
     text-align: center;
     margin: 1rem 0;
@@ -83,5 +84,93 @@ export const Form = styled.form`
   }
   & button {
     flex: 1 1;
+  }
+`;
+
+export const ModalBody = styled.div`
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  & ${FlexColumn} {
+    text-align: left;
+    align-items: start;
+
+    & ${BolText} {
+      font-size: 1.7rem !important;
+    }
+    & ${LigText} {
+      font-size: 1.3rem !important;
+    }
+  }
+`;
+
+export const ModalFooter = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: end;
+  gap: 1rem;
+  background: ${({ theme }) => theme.color_tertiary_light};
+  padding: 1.3rem;
+`;
+
+export const CommunityInput = styled.div`
+  margin: 1rem 0;
+  & > input {
+    font-family: inherit;
+    font-size: inherit;
+    width: 80%;
+    border: 1px solid ${({ theme }) => theme.color_text_light};
+    padding: 1rem;
+    padding-left: 2.5rem;
+    border-radius: 1rem;
+    background-color: ${({ theme }) => theme.color_tertiary_light};
+    &:focus {
+      outline: none;
+      border: 1px solid ${({ theme }) => theme.color_secondary};
+    }
+    &::-webkit-input-placeholder {
+      font-weight: 300;
+      color: ${({ theme }) => theme.color_tertiary_dark};
+    }
+  }
+  & ${LigText} {
+    position: relative;
+    margin-right: -2.5rem;
+    z-index: 5;
+  }
+`;
+
+export const CommunityType = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 1rem;
+`;
+
+export const CheckBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  & > svg {
+    color: ${({ theme }) => theme.color_tertiary_dark};
+    width: 2.2rem;
+    height: 2.2rem;
+    margin: 0 0.3rem;
+  }
+  & > input {
+    width: 2rem;
+    height: 2rem;
+  }
+  & ${FlexRow} {
+    align-items: center;
+    gap: 0.5rem;
+  }
+  & ${LigText} {
+    font-size: 1rem !important;
+    align-self: end;
   }
 `;

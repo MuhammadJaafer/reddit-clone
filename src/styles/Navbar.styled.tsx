@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { BolText, FlexColumn, FlexRow } from "./GlobalStyles";
 
 interface IBtn {
   outline?: any;
@@ -12,6 +13,7 @@ export const Nav = styled.nav`
   align-items: center;
 `;
 export const Logo = styled.div`
+  cursor: pointer;
   height: 100%;
   display: flex;
   align-items: center;
@@ -28,12 +30,12 @@ export const Logo = styled.div`
 `;
 
 export const SearchC = styled.form`
-  flex: 1;
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-
+  min-width: 10rem;
   & input {
     font-family: inherit;
     font-size: inherit;
@@ -43,6 +45,7 @@ export const SearchC = styled.form`
     border-radius: 10rem;
     width: 100%;
     height: 100%;
+
     padding-left: 4rem;
     color: ${({ theme }) => theme.color_text};
     &:focus {
@@ -86,6 +89,7 @@ export const NavButton = styled.button<IBtn>`
   font-weight: 700;
   cursor: pointer;
   margin: 0 0.5rem;
+  white-space: nowrap;
 `;
 
 export const IconsC = styled.div`
@@ -122,29 +126,53 @@ export const Box = styled.div`
 `;
 
 export const MenuC = styled.div`
+  width: 100%;
+  max-width: 20rem;
+  @media screen and (max-width: 800px) {
+    width: fit-content;
+  }
   & .menu_btn {
     background: none;
     border: none;
     cursor: pointer;
     padding: 0.6rem;
     border-radius: 0.3rem;
+    width: 100%;
     &:hover {
       background: ${({ theme }) => theme.color_hover};
     }
     & > span {
+      display: grid;
+      grid-template-columns: max-content 1fr max-content;
+      align-items: center;
+      justify-items: start;
+      @media screen and (max-width: 800px) {
+        grid-template-columns: max-content max-content;
+        & ${BolText} {
+          display: none;
+        }
+      }
+
+      gap: 0.5rem;
+      width: 100%;
+      & > svg {
+        width: 2.5rem;
+        height: 2.5rem;
+        color: ${({ theme }) => theme.color_text};
+      }
       & .reddit-icon {
         width: 2.5rem;
         height: 2.5rem;
-        color: ${({ theme }) => theme.color_text_light};
+        color: ${({ theme }) => theme.color_text};
       }
       & .account-icon {
         width: 2.5rem;
         height: 2.5rem;
-        color: ${({ theme }) => theme.color_text_light};
+        color: ${({ theme }) => theme.color_text};
       }
       & .arrow-icon {
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 2rem;
+        height: 2rem;
         color: ${({ theme }) => theme.color_text};
       }
     }
@@ -188,4 +216,29 @@ export const MenuDev = styled.div`
   width: 95%;
   border-radius: 1rem;
   background: ${({ theme }) => theme.color_hover};
+`;
+
+export const UserInfo = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & > svg {
+    width: 3rem !important;
+    height: 3rem !important;
+  }
+  & ${FlexColumn} {
+    justify-content: center;
+    align-items: start;
+    padding-left: 1rem;
+    @media screen and (max-width: 800px) {
+      display: none;
+    }
+  }
+  & ${FlexRow} {
+    justify-content: start;
+
+    & > svg {
+      color: ${({ theme }) => theme.color_primary};
+    }
+  }
 `;

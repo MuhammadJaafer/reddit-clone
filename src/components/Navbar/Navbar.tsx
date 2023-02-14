@@ -5,6 +5,7 @@ import React, { useContext } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { ThemeContext } from "styled-components";
 import RedditLogo from "../../../public/images/Reddit-Logo.svg";
+import Directory from "./Directory/Directory";
 import RightContent from "./RightContent/RightContent";
 import SearchInput from "./SearchInput";
 
@@ -38,8 +39,8 @@ const Navbar: React.FC<NavbarProps> = () => {
           </g>
         </svg>
       </Logo>
-      {/* <Directory />
-       */}
+      {user && <Directory user={user} />}
+
       <SearchInput />
       <RightContent user={user} />
     </Nav>

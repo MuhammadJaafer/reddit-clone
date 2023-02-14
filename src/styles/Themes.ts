@@ -31,6 +31,6 @@ export const darkTheme = {
   color_tertiary_light: "#272729",
   color_tertiary_dark: "#7d7f80",
   color_text: "#d4d7d9",
-  color_text_light: "#c5c8ca",
+  color_text_light: "#9a9b9f",
   color_body: "#030303",
 };

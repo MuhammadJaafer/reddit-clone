@@ -54,7 +54,7 @@ export const Button = styled.button<IBtn>`
     props.outline ? props.theme.color_secondary : props.theme.color_tertiary};
   background: ${(props) =>
     props.outline ? props.theme.color_tertiary : props.theme.color_secondary};
-  border: 1px solid ${({ theme }) => theme.color_secondary};
+  border: 2px solid ${({ theme }) => theme.color_secondary};
   border-radius: 10rem;
   padding: ${(props) => (props.size === "l" ? "1.5rem 2rem" : "0.8rem 1.2rem")};
   font-weight: 700;
@@ -64,9 +64,8 @@ export const Button = styled.button<IBtn>`
   ${(props) =>
     props.loading
       ? css`
-          opacity: 0.7;
           & svg {
-            color: ${props.theme.color_text};
+            color: ${({ theme }) => theme.color_hover};
             animation: ${rotate} 0.6s infinite linear;
             position: relative;
             width: 2.5rem;
@@ -83,7 +82,7 @@ export const OAuthButton = styled.button<IBtn>`
   font-family: inherit;
   color: ${({ theme }) => theme.color_text};
   background: ${({ theme }) => theme.color_tertiary};
-  border: 1px solid ${({ theme }) => theme.color_text_light};
+  border: 2px solid ${({ theme }) => theme.color_text_light};
   border-radius: 10rem;
   padding: 1rem 4rem;
   width: 100%;
@@ -135,11 +134,16 @@ export const ImpText = styled.span`
 `;
 export const BolText = styled.span`
   font-weight: 700;
-  font-size: 1.7rem !important;
+  font-size: 1.4rem !important;
+  color: ${({ theme }) => theme.color_text};
 `;
 export const ErrorText = styled.span`
   color: red;
   font-size: 1.3rem;
+`;
+
+export const LigText = styled.span`
+  color: ${({ theme }) => theme.color_text_light};
 `;
 
 export const SwitchButton = styled.label`
