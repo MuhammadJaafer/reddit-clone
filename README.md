@@ -19,4 +19,5 @@
 6. **Dark and Light theme**
 7. **Mobile Responsive** 
 8. **Google Analytics**
-Live Demo: [Reddit-Clone](https://example.com)
+
+### Live Demo: [Reddit-Clone](https://example.com)
