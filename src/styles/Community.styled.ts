@@ -246,7 +246,7 @@ export const RecommendationsHeader = styled.div`
     z-index: 2;
   }
   & ${NorText} {
-    color: ${({ theme }) => theme.color_tertiary};
+    color: white;
     font-size: 1.7rem;
     font-weight: 400;
     position: relative;
