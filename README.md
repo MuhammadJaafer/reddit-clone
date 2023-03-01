@@ -1,6 +1,6 @@
 # Reddit Clone 
 
-## I have build this clone with the latest technology in web development.
+## I have built this clone with the latest technology in web development.
 
 ### I have used: 
 1. **TypeScript**
@@ -10,13 +10,13 @@
 5. **Recoil.js** 
 6. **Firebase**
 
-### This clone have so many features:
-1. **email and google authantication**
-2. **create communities**
-3. **edit, join, and leave communities**
-4. **create post in communites**
-5. **delete, comment, and vote on posts**
-6. **dark and light theme**
-7. **mobile responsive** 
-
+### This clone has so many features:
+1. **Email and Google Authentication**
+2. **Create and Moderate Communities.**
+3. **Edit, Join, and Leave Communities**
+4. **Create Posts in Communities**
+5. **Delete, Comment, and Vote on Posts**
+6. **Dark and Light theme**
+7. **Mobile Responsive** 
+8. **Google Analytics**
 Live Demo: [Reddit-Clone](https://example.com)
