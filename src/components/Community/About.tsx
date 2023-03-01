@@ -76,8 +76,8 @@ const About: React.FC<AboutProps> = ({ communityData }) => {
           <RiCakeLine />
           <NorText>
             Created&nbsp;
-            {communityData.createdAt &&
-              moment(new Date(communityData.createdAt.seconds * 1000)).format(
+            {communityData?.createdAt &&
+              moment(new Date(communityData?.createdAt?.seconds * 1000)).format(
                 "MMM DD, YYYY"
               )}
           </NorText>
