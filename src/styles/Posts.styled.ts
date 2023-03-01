@@ -209,8 +209,8 @@ export const PostInfo = styled.div`
 
     & > img,
     & > svg {
-      width: 2.2rem;
-      height: 2.2rem;
+      width: 3rem;
+      height: 3rem;
       border-radius: 50%;
       color: ${({ theme }) => theme.color_secondary};
     }
