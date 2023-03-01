@@ -1,13 +1,15 @@
 import { authModalState } from "@/src/atoms/authModalAtoms";
-import { auth } from "@/src/firebase/clientApp";
+import { auth, firestore } from "@/src/firebase/clientApp";
 import { Button, ErrorText, ImpText, NorText } from "@/src/styles/GlobalStyles";
 import { Form } from "@/src/styles/Modal.styled";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { RiLoader2Fill } from "react-icons/ri";
 import { FirebaseError } from "firebase/app";
 import { FIREBASE_ERRORS } from "@/src/firebase/errors";
+import { User } from "firebase/auth";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 type SignUpProps = { loading?: boolean };
 
 const SignUp: React.FC<SignUpProps> = () => {
@@ -37,6 +39,18 @@ const SignUp: React.FC<SignUpProps> = () => {
     //update form state
     setSignUpForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+
+  const createUserDocument = async (user: User) => {
+    const userDocRef = doc(firestore, "users", user.uid);
+    setDoc(userDocRef, JSON.parse(JSON.stringify(user)));
+  };
+
+  useEffect(() => {
+    if (user) {
+      createUserDocument(user.user);
+    }
+  }, [user]);
+
   return (
     <Form onSubmit={onSubmit}>
       <input

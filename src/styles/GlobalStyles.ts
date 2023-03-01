@@ -7,7 +7,7 @@ interface IBtn {
   loading?: boolean;
 }
 interface IFlex {
-  gap: string;
+  gap?: string;
 }
 
 const GlobalStyles = createGlobalStyle`
@@ -43,11 +43,72 @@ a {
 input {
   color: ${({ theme }) => theme.color_text};
 }
+body{
+
+  & .menu_list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    background: ${({ theme }) => theme.color_tertiary};
+    padding: 0.5rem 0;
+    border-radius: 0.3rem;
+    width: 50vw;
+    max-width: 20rem;
+    position: relative;
+    z-index: 100;
+  }
+
+  & .menu_item {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    cursor: pointer;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem;
+      &:hover {
+        background: ${({ theme }) => theme.color_hover};
+      }
+      & > svg {
+        width: 2.5rem;
+        height: 2.5rem;
+        color: ${({ theme }) => theme.color_text};
+      }
+    
+  }
+  & .menu_item2 {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem;
+    &:hover {
+       background: ${({ theme }) => theme.color_hover};
+    }
+    & svg,
+      img {
+        width: 3rem;
+        height: 3rem;
+        color: ${({ theme }) => theme.color_secondary};
+        border-radius: 50%;
+        object-fit: cover;
+      }
+  }
+}
 `;
 export const Button = styled.button<IBtn>`
-  position: relative;
   font-family: inherit;
+  position: relative;
   display: flex;
+  height: 4rem;
   align-items: center;
   justify-content: center;
   color: ${(props) =>
@@ -60,18 +121,27 @@ export const Button = styled.button<IBtn>`
   font-weight: 700;
   cursor: pointer;
   margin: 0 0.5rem;
-
   ${(props) =>
     props.loading
-      ? css`
-          & svg {
-            color: ${({ theme }) => theme.color_hover};
-            animation: ${rotate} 0.6s infinite linear;
-            position: relative;
-            width: 2.5rem;
-            height: 2.5rem;
-          }
-        `
+      ? props.outline
+        ? css`
+            & > svg {
+              color: ${({ theme }) => theme.color_secondary};
+              animation: ${rotate} 0.6s infinite linear;
+              position: relative;
+              width: 2.5rem !important;
+              height: 2.5rem !important;
+            }
+          `
+        : css`
+            & > svg {
+              color: ${({ theme }) => theme.color_hover};
+              animation: ${rotate} 0.6s infinite linear;
+              position: relative;
+              width: 2.5rem !important;
+              height: 2.5rem !important;
+            }
+          `
       : ""}
 `;
 export const OAuthButton = styled.button<IBtn>`
@@ -121,10 +191,13 @@ export const FlexRow = styled.div<IFlex>`
   width: 100%;
   align-items: center;
   justify-content: center;
-  gap: ${(props) => props.gap};
+  gap: ${(props) => props.gap && "0rem"};
 `;
 export const NorText = styled.span`
   color: ${({ theme }) => theme.color_text};
+`;
+export const LinkText = styled.span`
+  color: ${({ theme }) => theme.color_secondary};
 `;
 export const ImpText = styled.span`
   color: ${({ theme }) => theme.color_secondary};
@@ -192,5 +265,83 @@ export const SwitchButton = styled.label`
     -ms-transform: translateX(2.2rem);
     transform: translateX(2.2rem);
   }
+`;
+
+export const TextInput = styled.input`
+  font-family: inherit;
+  font-size: inherit;
+  background-color: ${({ theme }) => theme.color_tertiary_light};
+  border: 1px solid ${({ theme }) => theme.color_hover};
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  height: 100%;
+  color: ${({ theme }) => theme.color_text};
+  &:focus {
+    outline: none;
+    border: 1px solid ${({ theme }) => theme.color_secondary};
+  }
+  &::-webkit-input-placeholder {
+    font-weight: 300;
+    color: ${({ theme }) => theme.color_tertiary_dark};
+  }
+`;
+export const TextAreaInput = styled.textarea`
+  resize: vertical;
+  font-family: inherit;
+  font-size: inherit;
+  background-color: ${({ theme }) => theme.color_tertiary_light};
+  border: 1px solid ${({ theme }) => theme.color_hover};
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  height: 100%;
+  color: ${({ theme }) => theme.color_text};
+  &:focus {
+    outline: none;
+    border: 1px solid ${({ theme }) => theme.color_secondary};
+  }
+  &::-webkit-input-placeholder {
+    font-weight: 300;
+    color: ${({ theme }) => theme.color_tertiary_dark};
+  }
+`;
+export const TitleBox = styled.div`
+  padding: 1.5rem 0.5rem;
+  border-bottom: 1px solid ${({ theme }) => theme.color_tertiary};
+  margin-top: 3rem;
+  & ${NorText} {
+    font-weight: 500;
+    font-size: 1.8rem;
+  }
+  margin-bottom: 3rem;
+`;
+
+export const ErrorC = styled.div`
+  width: 100%;
+  max-width: 100rem;
+  height: 6rem;
+  padding: 2rem;
+  gap: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  background: #ff000050;
+  color: #ff0000cc;
+  & > svg {
+    width: 3rem;
+    height: 3rem;
+    color: currentColor;
+  }
+`;
+
+export const Loader = styled.div`
+  & > svg {
+    animation: ${rotate} 0.5s infinite linear;
+    color: ${({ theme }) => theme.color_text_light};
+  }
+`;
+export const MorePosts = styled(Button)`
+  margin: 0 auto;
 `;
 export default GlobalStyles;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BolText, FlexColumn, FlexRow, LigText } from "./GlobalStyles";
+import { BolText, Button, FlexColumn, FlexRow, LigText } from "./GlobalStyles";
 interface IModal {
   open: boolean;
 }
@@ -113,6 +113,9 @@ export const ModalFooter = styled.div`
   gap: 1rem;
   background: ${({ theme }) => theme.color_tertiary_light};
   padding: 1.3rem;
+  & ${Button} {
+    min-width: 12rem;
+  }
 `;
 
 export const CommunityInput = styled.div`

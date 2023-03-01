@@ -1,6 +1,11 @@
+import { defaultMenuItem } from "@/src/atoms/directoryMenuAtom";
 import { auth } from "@/src/firebase/clientApp";
+import useCommunityData from "@/src/hooks/useCommunityData";
+import useDirectory from "@/src/hooks/useDirectory";
 import { Logo, Nav } from "@/src/styles/Navbar.styled";
 import { User } from "firebase/auth";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { ThemeContext } from "styled-components";
@@ -15,9 +20,11 @@ type NavbarProps = {
 const Navbar: React.FC<NavbarProps> = () => {
   const [user, loading, error] = useAuthState(auth);
   const themeContext = useContext(ThemeContext);
+  const { onSelectMenuItem } = useDirectory();
+  useCommunityData();
   return (
     <Nav>
-      <Logo>
+      <Logo onClick={() => onSelectMenuItem(defaultMenuItem)}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
           <g>
             <circle fill="#FF4500" cx="10" cy="10" r="10"></circle>
@@ -39,6 +46,7 @@ const Navbar: React.FC<NavbarProps> = () => {
           </g>
         </svg>
       </Logo>
+
       {user && <Directory user={user} />}
 
       <SearchInput />

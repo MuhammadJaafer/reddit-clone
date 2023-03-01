@@ -10,3 +10,15 @@ export const rotate = keyframes`
      rotate: 180deg;
 }
 `;
+
+export const skeletonLoading = keyframes`
+0%{
+ opacity: 1;
+}
+50%{
+     opacity: 0.5;
+}
+100%{
+     opacity: 1;
+}
+`;

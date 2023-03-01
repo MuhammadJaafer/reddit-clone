@@ -20,7 +20,7 @@ export const lightTheme = {
   color_tertiary_light: "#f6f7f8",
   color_tertiary_dark: " #7c7c7c",
   color_text: "#2b2b2b",
-  color_text_light: "#a8a8a8",
+  color_text_light: "#878a8c",
   color_body: "#dae0e6",
 };
 export const darkTheme = {

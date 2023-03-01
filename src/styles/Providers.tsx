@@ -11,6 +11,7 @@ type ProvidersProps = {
 const Providers: React.FC<ProvidersProps> = ({ children }) => {
   const [themeState, setThemeState] = useRecoilState(ThemeState);
   const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
     setThemeState({
       darkMode: localStorage.getItem("theme") === "true" ? true : false,

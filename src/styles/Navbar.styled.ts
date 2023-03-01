@@ -1,16 +1,25 @@
 import styled from "styled-components";
-import { BolText, FlexColumn, FlexRow } from "./GlobalStyles";
+import { BolText, FlexColumn, FlexRow, LigText } from "./GlobalStyles";
 
 interface IBtn {
   outline?: any;
 }
-
+interface menuProps {
+  isHome?: boolean;
+}
 export const Nav = styled.nav`
   height: 5rem;
   padding: 0.5rem 1.2rem;
   background: ${({ theme }) => theme.color_tertiary};
   display: flex;
   align-items: center;
+  position: relative;
+  z-index: 100;
+  & > a {
+    width: fit-content;
+    height: 100%;
+    display: block;
+  }
 `;
 export const Logo = styled.div`
   cursor: pointer;
@@ -25,6 +34,11 @@ export const Logo = styled.div`
   }
   & svg:first-child {
     height: 90%;
+  }
+  & > svg:last-child {
+    @media screen and (max-width: 800px) {
+      display: none;
+    }
   }
   margin-right: 1rem;
 `;
@@ -107,7 +121,7 @@ export const IconsBox = styled.div`
   & svg {
     width: 2.3rem;
     height: 2.3rem;
-    color: ${({ theme }) => theme.color_text};
+    color: ${({ theme }) => theme.color_text_light};
   }
   &:hover {
     background: ${({ theme }) => theme.color_hover};
@@ -125,9 +139,13 @@ export const Box = styled.div`
   }
 `;
 
-export const MenuC = styled.div`
+export const MenuC = styled.div<menuProps>`
   width: 100%;
   max-width: 20rem;
+  height: fit-content;
+
+  & .menu_button {
+  }
   @media screen and (max-width: 800px) {
     width: fit-content;
   }
@@ -141,76 +159,47 @@ export const MenuC = styled.div`
     &:hover {
       background: ${({ theme }) => theme.color_hover};
     }
-    & > span {
-      display: grid;
-      grid-template-columns: max-content 1fr max-content;
-      align-items: center;
-      justify-items: start;
-      @media screen and (max-width: 800px) {
-        grid-template-columns: max-content max-content;
-        & ${BolText} {
-          display: none;
-        }
-      }
 
-      gap: 0.5rem;
-      width: 100%;
-      & > svg {
-        width: 2.5rem;
-        height: 2.5rem;
-        color: ${({ theme }) => theme.color_text};
-      }
-      & .reddit-icon {
-        width: 2.5rem;
-        height: 2.5rem;
-        color: ${({ theme }) => theme.color_text};
-      }
-      & .account-icon {
-        width: 2.5rem;
-        height: 2.5rem;
-        color: ${({ theme }) => theme.color_text};
-      }
-      & .arrow-icon {
-        width: 2rem;
-        height: 2rem;
-        color: ${({ theme }) => theme.color_text};
+    display: grid;
+    grid-template-columns: max-content 1fr max-content;
+    align-items: center;
+    justify-items: start;
+    @media screen and (max-width: 800px) {
+      grid-template-columns: max-content max-content;
+      & ${BolText} {
+        display: none;
       }
     }
-  }
-  & .menu_list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.3rem;
-    background: ${({ theme }) => theme.color_tertiary};
-    padding: 0.5rem 0;
-    border-radius: 0.3rem;
-    width: 50vw;
-    max-width: 20rem;
-  }
-  & .menu_item {
-    background: none;
-    border: none;
 
-    & > div {
-      display: flex;
-      align-items: center;
-      justify-content: start;
-      gap: 1rem;
-      width: 100%;
-      padding: 1rem;
-      &:hover {
-        background: ${({ theme }) => theme.color_hover};
-      }
-      & > svg {
-        width: 2.5rem;
-        height: 2.5rem;
-        color: ${({ theme }) => theme.color_text};
-      }
+    gap: 0.5rem;
+    width: 100%;
+    & > svg,
+    img {
+      width: 3rem;
+      height: 3rem;
+      color: ${(props) =>
+        props.isHome ? props.theme.color_text : props.theme.color_secondary};
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    & .reddit-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      color: ${({ theme }) => theme.color_text};
+    }
+    & .account-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      color: ${({ theme }) => theme.color_text_light};
+    }
+    & .arrow-icon {
+      width: 2rem;
+      height: 2rem;
+      color: ${({ theme }) => theme.color_text_light};
     }
   }
 `;
+
 export const MenuDev = styled.div`
   height: 1px;
   width: 95%;
@@ -240,5 +229,14 @@ export const UserInfo = styled.div`
     & > svg {
       color: ${({ theme }) => theme.color_primary};
     }
+  }
+`;
+
+export const DirectoryBox = styled.div`
+  width: 100%;
+  padding: 1rem 2rem;
+  & ${LigText} {
+    font-size: 1.1rem;
+    text-transform: uppercase;
   }
 `;

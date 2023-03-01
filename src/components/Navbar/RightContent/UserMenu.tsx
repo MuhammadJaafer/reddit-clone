@@ -6,7 +6,15 @@ import {
   NorText,
 } from "@/src/styles/GlobalStyles";
 import { MenuC, MenuDev, UserInfo } from "@/src/styles/Navbar.styled";
-import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/menu";
+import {
+  Menu,
+  MenuList,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+  MenuPopover,
+  MenuLink,
+} from "@reach/menu-button";
 import { signOut, User } from "firebase/auth";
 import React from "react";
 import { FiChevronDown } from "react-icons/fi";
@@ -15,11 +23,12 @@ import { VscAccount } from "react-icons/vsc";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineLogin } from "react-icons/md";
 import { auth } from "@/src/firebase/clientApp";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useResetRecoilState, useSetRecoilState } from "recoil";
 import { authModalState } from "@/src/atoms/authModalAtoms";
 import { ThemeState } from "@/src/atoms/themeAtoms";
 import SwitchButton from "./SwitchButton";
 import { IoSparkles } from "react-icons/io5";
+import { communityState } from "@/src/atoms/communitiesAtom";
 type UserMenuProps = {
   user?: User | null;
 };
@@ -31,17 +40,21 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
     localStorage.setItem("theme", themeState.darkMode ? "false" : "true");
     setThemeState({ darkMode: !themeState.darkMode });
   };
+  let userName = user?.displayName || user?.email?.split("@")[0] || "userName";
+  if (userName.length > 15) userName = userName.slice(0, 15) + "...";
+
+  const logout = async () => {
+    await signOut(auth);
+  };
   return (
     <MenuC>
-      <Menu closeOnSelect={false}>
+      <Menu className="menu">
         <MenuButton className="menu_btn">
           {user ? (
             <UserInfo>
               <FaRedditSquare className="reddit-icon" />
               <FlexColumn gap="0.2rem">
-                <NorText>
-                  {user?.displayName || user.email?.split("@")[0]}
-                </NorText>
+                <NorText>{userName}</NorText>
                 <FlexRow gap="0.2rem">
                   <IoSparkles />
                   <LigText>1 Karma</LigText>
@@ -58,49 +71,40 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
         <MenuList className="menu_list">
           {user ? (
             <>
-              {" "}
               <MenuItem className="menu_item">
-                <div>
-                  <CgProfile />
-                  <NorText>Profile</NorText>
-                </div>
+                <CgProfile />
+                <NorText>Profile</NorText>
               </MenuItem>
               <MenuItem className="menu_item">
-                <div>
-                  <FaRegMoon />
-                  <NorText>Dark Mood</NorText>
+                <FaRegMoon />
+                <NorText>Dark Mood</NorText>
 
-                  <SwitchButton
-                    handleChange={handleTheme}
-                    value={themeState.darkMode}
-                  />
-                </div>
+                <SwitchButton
+                  handleChange={handleTheme}
+                  value={themeState.darkMode}
+                />
               </MenuItem>
               <MenuDev />
               <MenuItem
                 className="menu_item"
                 onClick={() => {
-                  signOut(auth);
+                  logout();
                 }}
               >
-                <div>
-                  <MdOutlineLogin />
-                  <NorText>Log Out</NorText>
-                </div>
+                <MdOutlineLogin />
+                <NorText>Log Out</NorText>
               </MenuItem>
             </>
           ) : (
             <>
               <MenuItem className="menu_item">
-                <div>
-                  <FaRegMoon />
-                  <NorText>Dark Mood</NorText>
+                <FaRegMoon />
+                <NorText>Dark Mood</NorText>
 
-                  <SwitchButton
-                    handleChange={handleTheme}
-                    value={themeState.darkMode}
-                  />
-                </div>
+                <SwitchButton
+                  handleChange={handleTheme}
+                  value={themeState.darkMode}
+                />
               </MenuItem>
               <MenuDev />
               <MenuItem
@@ -109,10 +113,8 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
                   setAuthModalState({ open: true, view: "login" });
                 }}
               >
-                <div>
-                  <MdOutlineLogin />
-                  <NorText> Log In / Sign Up</NorText>
-                </div>
+                <MdOutlineLogin />
+                <NorText> Log In / Sign Up</NorText>
               </MenuItem>
             </>
           )}
