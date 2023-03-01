@@ -6,7 +6,7 @@ export interface Community {
   creatorId: string;
   numberOfMembers: number;
   privacyType: "public" | "restricted" | "private";
-  createdAt?: Timestamp;
+  createdAt: Timestamp;
   imageURL?: string;
 }
 

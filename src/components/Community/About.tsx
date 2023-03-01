@@ -66,7 +66,7 @@ const About: React.FC<AboutProps> = ({ communityData }) => {
       <AboutBody>
         <AboutInfo>
           <NorText>
-            {communityStateValue.currentCommunity?.numberOfMembers.toLocaleString()}
+            {communityStateValue?.currentCommunity?.numberOfMembers.toLocaleString()}
           </NorText>
           <NorText>{1}</NorText>
           <NorText>Members</NorText>
@@ -77,7 +77,7 @@ const About: React.FC<AboutProps> = ({ communityData }) => {
           <NorText>
             Created&nbsp;
             {communityData.createdAt &&
-              moment(new Date(communityData.createdAt?.seconds * 1000)).format(
+              moment(new Date(communityData.createdAt.seconds * 1000)).format(
                 "MMM DD, YYYY"
               )}
           </NorText>
