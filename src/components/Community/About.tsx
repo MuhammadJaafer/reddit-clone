@@ -39,10 +39,10 @@ const About: React.FC<AboutProps> = ({ communityData }) => {
     if (!selectedFile) return;
     setUploadingImage(true);
     try {
-      const imageRef = ref(storage, `communities/${communityData.id}/image`);
+      const imageRef = ref(storage, `communities/${communityData?.id}/image`);
       await uploadString(imageRef, selectedFile, "data_url");
       const downloadURL = await getDownloadURL(imageRef);
-      await updateDoc(doc(firestore, "communities", communityData.id), {
+      await updateDoc(doc(firestore, "communities", communityData?.id), {
         imageURL: downloadURL,
       });
       setCommunityStateValue((prev) => ({
@@ -85,7 +85,7 @@ const About: React.FC<AboutProps> = ({ communityData }) => {
         <Link href={`/r/${router.query.communityId}/submit`}>
           <Button>Create Post</Button>
         </Link>
-        {user?.uid === communityData.creatorId && (
+        {user?.uid === communityData?.creatorId && (
           <>
             <NorText>Admin</NorText>
             <ChangeImage>
@@ -96,9 +96,9 @@ const About: React.FC<AboutProps> = ({ communityData }) => {
               >
                 Change Image
               </LinkText>
-              {communityData.imageURL || selectedFile ? (
+              {communityData?.imageURL || selectedFile ? (
                 <img
-                  src={selectedFile || communityData.imageURL}
+                  src={selectedFile || communityData?.imageURL}
                   alt="community image"
                 />
               ) : (
