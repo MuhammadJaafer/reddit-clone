@@ -2,7 +2,7 @@ import { initializeApp, getApp, getApps } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
-import { getAnalytics } from "firebase/analytics";
+import { getAnalytics, isSupported } from "firebase/analytics";
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -14,10 +14,11 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase for SSR
+
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const firestore = getFirestore(app);
 const auth = getAuth(app);
 const storage = getStorage(app);
-// const analytics = getAnalytics(app);
+const analytics = isSupported().then((yes) => (yes ? getAnalytics(app) : null));
 
-export { app, firestore, auth, storage };
+export { app, firestore, auth, storage, analytics };

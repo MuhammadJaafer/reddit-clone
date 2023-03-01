@@ -4,12 +4,18 @@ import GlobalStyles from "../styles/GlobalStyles";
 import { Roboto_Mono } from "@next/font/google";
 import { RecoilRoot } from "recoil";
 import Providers from "../styles/Providers";
+import { useEffect } from "react";
+import { analytics, firestore } from "../firebase/clientApp";
 const roboto_mono = Roboto_Mono({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700"],
   variable: "--font-roboto",
 });
 export default function App({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    analytics;
+  }, []);
+
   return (
     <RecoilRoot>
       <Providers>

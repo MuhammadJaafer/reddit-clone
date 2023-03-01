@@ -4,7 +4,7 @@ import { HomePage } from "../styles/Home.styled";
 import PageContent from "../components/Layout/PageContent";
 import CreatePostLink from "../components/Community/CreatePostLink";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, firestore } from "../firebase/clientApp";
+import { analytics, auth, firestore } from "../firebase/clientApp";
 import { useEffect, useState } from "react";
 import {
   collection,
@@ -24,6 +24,7 @@ import Recommendations from "../components/Community/Recommendations";
 import Premium from "../components/Community/Premium";
 import PersonalHome from "../components/Community/PersonalHome";
 import { Button, MorePosts } from "../styles/GlobalStyles";
+import { logEvent } from "firebase/analytics";
 
 export default function Home() {
   const [user, loadingUser] = useAuthState(auth);
@@ -121,6 +122,7 @@ export default function Home() {
       setPostStateValue((prev: any) => ({ ...prev, postVotes: [] }));
     };
   }, [user, postStateValue.posts, numberOfPosts]);
+
   return (
     <HomePage>
       <PageContent>

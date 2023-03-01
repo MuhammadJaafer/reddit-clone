@@ -49,6 +49,7 @@ const Communities: React.FC<CommunitiesProps> = ({ open, setOpen }) => {
         <LigText>My Communities</LigText>
       </DirectoryBox>
       <MenuItem
+        onSelect={() => {}}
         className="menu_item"
         onClick={() => {
           setOpen(true);
