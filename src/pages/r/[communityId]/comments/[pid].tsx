@@ -48,6 +48,7 @@ const PostPage: React.FC = () => {
               post={postStateValue.selectedPost}
               onVote={onVote}
               onDeletePost={onDeletePost}
+              isHomePage={false}
               userVoteValue={
                 postStateValue.postVotes.find(
                   (item) => item.postId === postStateValue.selectedPost?.id

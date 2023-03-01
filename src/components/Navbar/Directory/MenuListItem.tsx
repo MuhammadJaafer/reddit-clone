@@ -29,6 +29,7 @@ const MenuListItem: React.FC<MenuListItemProps> = ({
   const { onSelectMenuItem } = useDirectory();
   return (
     <MenuItem
+      onSelect={() => {}}
       className="menu_item2"
       onClick={() => {
         onSelectMenuItem({ link, displayText, imageURL, Icon });

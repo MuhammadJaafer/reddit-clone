@@ -71,11 +71,11 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
         <MenuList className="menu_list">
           {user ? (
             <>
-              <MenuItem className="menu_item">
+              <MenuItem onSelect={() => {}} className="menu_item">
                 <CgProfile />
                 <NorText>Profile</NorText>
               </MenuItem>
-              <MenuItem className="menu_item">
+              <MenuItem onSelect={() => {}} className="menu_item">
                 <FaRegMoon />
                 <NorText>Dark Mood</NorText>
 
@@ -86,6 +86,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
               </MenuItem>
               <MenuDev />
               <MenuItem
+                onSelect={() => {}}
                 className="menu_item"
                 onClick={() => {
                   logout();
@@ -97,7 +98,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
             </>
           ) : (
             <>
-              <MenuItem className="menu_item">
+              <MenuItem onSelect={() => {}} className="menu_item">
                 <FaRegMoon />
                 <NorText>Dark Mood</NorText>
 
@@ -108,6 +109,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
               </MenuItem>
               <MenuDev />
               <MenuItem
+                onSelect={() => {}}
                 className="menu_item"
                 onClick={() => {
                   setAuthModalState({ open: true, view: "login" });
