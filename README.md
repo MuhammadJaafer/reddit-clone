@@ -20,4 +20,4 @@
 7. **Mobile Responsive** 
 8. **Google Analytics**
 
-### Live Demo: [Reddit-Clone](https://example.com)
+### Live Demo: [Reddit-Clone](https://m7-reddit-clone.vercel.app/)
