@@ -104,6 +104,10 @@ export const NavButton = styled.button<IBtn>`
   cursor: pointer;
   margin: 0 0.5rem;
   white-space: nowrap;
+  @media screen and (max-width: 800px) {
+    font-size: 1.3rem;
+    padding: 0.8rem 1.2rem;
+  }
 `;
 
 export const IconsC = styled.div`

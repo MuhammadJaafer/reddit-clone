@@ -147,6 +147,10 @@ export const Button = styled.button<IBtn>`
             }
           `
       : ""}
+  @media screen and (max-width: 800px) {
+    font-size: 1.3rem;
+    padding: 0.8rem 1.2rem;
+  }
 `;
 export const OAuthButton = styled.button<IBtn>`
   display: flex;
@@ -181,6 +185,10 @@ export const OAuthButton = styled.button<IBtn>`
           }
         `
       : ""}
+  @media screen and (max-width:800px) {
+    font-size: 1.5rem;
+    padding: 1rem 3rem;
+  }
 `;
 export const FlexColumn = styled.div<IFlex>`
   display: flex;
