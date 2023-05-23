@@ -1,6 +1,6 @@
 # Reddit Clone 
 
-## I have built this clone with the latest technology in web development.
+## This project was a part of a tutorial but I have built it using different technologies.
 
 ### I have used: 
 1. **TypeScript**
