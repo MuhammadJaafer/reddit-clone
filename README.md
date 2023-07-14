@@ -1,5 +1,3 @@
-Certainly! Here's an updated version of the README file with a live demo link:
-
 # Reddit Clone
 
 This project is a Reddit clone built using TypeScript, React.js, Next.js, Styled-components, Recoil.js, and Firebase. It was initially inspired by a tutorial, but I have modified and expanded upon it using different technologies to enhance its functionality and design.
